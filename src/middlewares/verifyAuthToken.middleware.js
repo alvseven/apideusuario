@@ -16,7 +16,6 @@ const verifyAuthTokenMiddleware = (req, res, next) => {
 
     req.isAdm = decoded.isAdm;
     req.uuid = decoded.uuid;
-    req.email = decoded.email;
 
     next();
   });

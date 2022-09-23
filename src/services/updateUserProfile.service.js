@@ -1,15 +1,18 @@
 import users from "../database";
 
-const updateUserProfileService = (uuid, email, isAdm, user) => {
-  const userIndex = users.findIndex((user) => user.uuid == uuid);
+const updateUserProfileService = (reqUuid, uuid, isAdm, user) => {
+  const userIndex = users.findIndex((user) => user.uuid === uuid);
 
   if (userIndex === -1) {
     throw new Error("User not found");
   }
 
-  if (!isAdm && users[userIndex].email !== email) {
+  console.log("id do usuário encontrado:", users[userIndex].uuid);
+  console.log("id do usuário da requisição:", uuid);
+
+  if (!isAdm && users[userIndex].uuid !== reqUuid) {
     throw new Error(
-      "You can update only your profile, unless you are an admin"
+      "You can only update your profile, unless you are an admin"
     );
   }
 

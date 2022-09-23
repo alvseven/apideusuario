@@ -1,15 +1,14 @@
 import users from "../database";
-import getUserProfileService from "./getUserProfile.service";
 
-const deleteUserService = (uuid, isAdm, email) => {
+const deleteUserService = (reqUuid, uuid, isAdm) => {
   const userIndex = users.find((user) => user.uuid === uuid);
   if (userIndex === -1) {
     throw new Error("User not found");
   }
 
-  if (!isAdm && users[userIndex].email !== email) {
+  if (!isAdm && users[userIndex].uuid !== reqUuid) {
     throw new Error(
-      "You can update only your profile, unless you are an admin"
+      "You can only delete your profile, unless you are an admin"
     );
   }
 
