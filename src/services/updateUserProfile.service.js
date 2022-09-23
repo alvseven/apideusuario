@@ -7,9 +7,6 @@ const updateUserProfileService = (reqUuid, uuid, isAdm, user) => {
     throw new Error("User not found");
   }
 
-  console.log("id do usuário encontrado:", users[userIndex].uuid);
-  console.log("id do usuário da requisição:", uuid);
-
   if (!isAdm && users[userIndex].uuid !== reqUuid) {
     throw new Error(
       "You can only update your profile, unless you are an admin"
