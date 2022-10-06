@@ -19,7 +19,12 @@ router.get(
 );
 router.get("/profile", verifyAuthTokenMiddleware, getUserProfileController);
 router.post("", verifyEmailAvailabilityMiddleware, createUserController);
-router.patch("/:uuid", verifyAuthTokenMiddleware, updateUserProfileController);
+router.patch(
+  "/:uuid",
+  verifyAuthTokenMiddleware,
+  verifyEmailAvailabilityMiddleware,
+  updateUserProfileController
+);
 router.delete("/:uuid", verifyAuthTokenMiddleware, deleteUserController);
 
 export default router;
